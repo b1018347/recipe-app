@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Recipe } from '../recipe.model';
+import { RecipeService } from '../recipe.service';
 @Component({
     selector: 'app-recipe-item-detail',
     templateUrl: './recipe-item-detail.component.html'
@@ -7,9 +8,9 @@ import { Recipe } from '../recipe.model';
 
 export class RecipeItemDetailComponent{
     @Input() recipe: Recipe;
+    constructor(private recipeService: RecipeService) {}
 
-    loadRecipe(recipe) {
-        console.log(recipe);
-        this.recipe = recipe;
+    loadRecipe() {
+        this.recipeService.recipeSelected.emit(this.recipe);
     }
 }

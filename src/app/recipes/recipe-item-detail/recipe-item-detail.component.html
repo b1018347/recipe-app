@@ -12,6 +12,7 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="btn-group" appDropdown>
+            <button (click)="onAddToShoppingList(recipe.ingredients)" class="btn btn-primary">To Shopping List</button>
             <button type="button" class="btn btn-primary dropdown-toggle">Manage Recipe
                 <span class="caret"></span>
             </button>
@@ -30,6 +31,11 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        Ingredents
+        <ul class="list-group">
+            <li class="list-group-item"
+            *ngFor="let ingredient of recipe.ingredients">
+            {{ingredient.name}} - {{ingredient.amount}}
+            </li>
+        </ul>
     </div>
 </div>

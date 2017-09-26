@@ -3,6 +3,7 @@ import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
 import { Subject } from 'rxjs/Subject';
 
+@Injectable()
 export class RecipeService {
     recipesChanged = new Subject<Recipe[]>();
     private recipes: Recipe[] = [
@@ -21,6 +22,11 @@ export class RecipeService {
             new Ingredient('Chicken Breast', 2)
         ])
       ];
+
+      setRecipes(recipes: Recipe[]) {
+          this.recipes = recipes;
+          this.recipesChanged.next(this.recipes);
+      }
 
       getRecipes() {
           return this.recipes.slice();
@@ -44,4 +50,5 @@ export class RecipeService {
           this.recipes.splice(index, 1);
           this.recipesChanged.next(this.recipes);
       }
+
 }
